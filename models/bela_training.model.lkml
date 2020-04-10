@@ -11,6 +11,9 @@
 # want to see your own users  web behavior)
 
 # An Explore that uses the ‘sql_always_where’ parameter
+# (removed distribution center that is being transitioned out from inventory_items
+# explore so users don't think we can request inventory from there)
+# inventory from there)
 
 # A join that uses the ‘view_label’ parameter
 # A join that is an INNER join
@@ -54,6 +57,7 @@ explore: events {
 }
 
 explore: inventory_items {
+  sql_always_where: ${distribution_centers.id} <> '1' ;;
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -96,7 +100,6 @@ explore: order_items {
 }
 
 explore: products {
-  sql_always_where: ${distribution_center_id} <> '1' ;;
   join: distribution_centers {
     type: left_outer
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
