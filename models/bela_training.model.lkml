@@ -1,5 +1,5 @@
 # At least three Explores. Amongst the three, there should be:
-# An Explore that is cached for 4 hours
+# An Explore that is cached for 4 hours (check)
 # A join that uses the ‘fields’ parameter
 # An Explore that uses the ‘always_filter’ parameter
 # An Explore that uses the ‘sql_always_where’ parameter
@@ -21,13 +21,9 @@ datagroup: bela_training_default_datagroup {
 
 persist_with: bela_training_default_datagroup
 
-datagroup: orders_datagroup {
-  sql_trigger: SELECT max(id) FROM my_tablename ;;
-  max_cache_age: "24 hours"
-  label: "ETL ID added"
-  description: "Triggered when new ID is added to ETL log"
+datagroup: users_datagroup {
+  max_cache_age: "4 hours"
 }
-
 
 explore: company_list {}
 
@@ -38,7 +34,6 @@ explore: daily_activity {}
 explore: distribution_centers {}
 
 explore: events {
-  persist_with: bela_training_default_datagroup
   join: users {
     type: left_outer
     sql_on: ${events.user_id} = ${users.id} ;;
@@ -96,6 +91,8 @@ explore: products {
 
 explore: user_count_daily_rollup {}
 
-explore: users {}
+explore: users {
+  persist_with: users_datagroup
+}
 
 #

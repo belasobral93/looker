@@ -1,4 +1,30 @@
 view: inventory_items {
+  set: inventory_item_set {
+    fields: [
+      id,
+      cost,
+      created_time,
+      created_date,
+      created_month,
+      created_quarter,
+      created_year,
+      product_brand,
+      product_category,
+      product_department,
+      product_distribution_center_id,
+      product_id,
+      product_name,
+      product_retail_price,
+      product_sku,
+      sold_time,
+      sold_date,
+      sold_month,
+      sold_quarter,
+      sold_week,
+      sold_year,
+      count
+    ]
+  }
   sql_table_name: public.inventory_items ;;
   drill_fields: [id]
 
