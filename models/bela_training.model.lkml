@@ -2,12 +2,16 @@
 # An Explore that is cached for 4 hours (none of explores seemed like a perfect fit
 # as some were etl'd daily or hourly, but I chose users as I couldn't think of a good use case
 # where you'd need real time updates on users created)
+
 # A join that uses the ‘fields’ parameter (in inventory_items, there were a lot of overlapping fields
 # from distribution center and products, so I excluded products completely and only included
 # distribution center name)
+
 # # An Explore that uses the ‘always_filter’ parameter (excluded Looker's IP address from Events as you don't
 # want to see your own users  web behavior)
+
 # An Explore that uses the ‘sql_always_where’ parameter
+
 # A join that uses the ‘view_label’ parameter
 # A join that is an INNER join
 # A view that is joined into the same Explore twice
@@ -92,6 +96,7 @@ explore: order_items {
 }
 
 explore: products {
+  sql_always_where: ${distribution_center_id} <> '1' ;;
   join: distribution_centers {
     type: left_outer
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
