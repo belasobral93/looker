@@ -40,7 +40,7 @@ explore: distribution_centers {}
 
 explore: events {
   always_filter: {
-    filters: [ip_address: "54.209.194.236"]
+    filters: [ip_address: "-54.209.194.236"]
   }
   join: users {
     type: left_outer
