@@ -21,7 +21,6 @@ datagroup: bela_training_default_datagroup {
 
 persist_with: bela_training_default_datagroup
 
-explore: a {}
 
 explore: bsandell {}
 
