@@ -16,13 +16,18 @@ include: "/views/**/*.view"
 
 datagroup: bela_training_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "4 hours"
+  max_cache_age: "24 hours"
 }
 
 persist_with: bela_training_default_datagroup
 
+datagroup: orders_datagroup {
+  sql_trigger: SELECT max(id) FROM my_tablename ;;
+  max_cache_age: "24 hours"
+  label: "ETL ID added"
+  description: "Triggered when new ID is added to ETL log"
+}
 
-explore: bsandell {}
 
 explore: company_list {}
 
