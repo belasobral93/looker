@@ -1,5 +1,5 @@
 # At least three Explores. Amongst the three, there should be:
-# An Explore that is cached for 4 hours (hint: read about datagroups!)
+# An Explore that is cached for 4 hours
 # A join that uses the ‘fields’ parameter
 # An Explore that uses the ‘always_filter’ parameter
 # An Explore that uses the ‘sql_always_where’ parameter
