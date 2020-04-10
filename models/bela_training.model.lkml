@@ -16,6 +16,7 @@
 # inventory from there)
 
 # A join that uses the ‘view_label’ parameter
+
 # A join that is an INNER join
 # A view that is joined into the same Explore twice
 #
@@ -66,6 +67,7 @@ explore: inventory_items {
   }
 
   join: distribution_centers {
+    view_label: "Inventory Items"
     type: left_outer
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
