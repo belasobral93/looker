@@ -1,7 +1,12 @@
 # At least three Explores. Amongst the three, there should be:
-# An Explore that is cached for 4 hours (check)
-# A join that uses the ‘fields’ parameter
-# An Explore that uses the ‘always_filter’ parameter
+# An Explore that is cached for 4 hours (none of explores seemed like a perfect fit
+# as some were etl'd daily or hourly, but I chose users as I couldn't think of a good use case
+# where you'd need real time updates on users created)
+# A join that uses the ‘fields’ parameter (in inventory_items, there were a lot of overlapping fields
+# from distribution center and products, so I excluded products completely and only included
+# distribution center name)
+# # An Explore that uses the ‘always_filter’ parameter (excluded Looker's IP address from Events as you don't
+# want to see your own users  web behavior)
 # An Explore that uses the ‘sql_always_where’ parameter
 # A join that uses the ‘view_label’ parameter
 # A join that is an INNER join
@@ -34,6 +39,9 @@ explore: daily_activity {}
 explore: distribution_centers {}
 
 explore: events {
+  always_filter: {
+    filters: [ip_address: "54.209.194.236"]
+  }
   join: users {
     type: left_outer
     sql_on: ${events.user_id} = ${users.id} ;;
