@@ -20,6 +20,8 @@
 # to the inventory items view label)
 
 # A join that is an INNER join
+# (inventory and products to distribution center. We only want to see inventory that exist in distribution centers)
+
 # A view that is joined into the same Explore twice
 #
 
@@ -69,11 +71,11 @@ explore: inventory_items {
   }
 
   join: distribution_centers {
-    view_label: "Inventory Items"
     type: inner
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
     fields: [distribution_centers.name]
+    from: distribution_centers_extended
   }
 }
 

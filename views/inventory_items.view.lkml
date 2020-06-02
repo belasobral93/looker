@@ -28,6 +28,9 @@ view: inventory_items {
   sql_table_name: public.inventory_items ;;
   drill_fields: [id]
 
+  dimension: test {
+    sql: ${distribution_centers.name} ;;
+  }
   dimension: id {
     primary_key: yes
     type: number
