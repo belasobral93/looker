@@ -11,11 +11,11 @@ view: purchase_history {
     }
   }
 
-  dimension: user_id {}
-  dimension: order_id {}
+  dimension: user_id {type:number}
+  dimension: order_id {type:number}
   dimension: created_at {}
-  dimension: sale_price {}
-  dimension: purchase_order {}
+  dimension: sale_price {type:number}
+  dimension: purchase_order {type:number}
 
   measure: order_total {
     type: sum
