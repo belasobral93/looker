@@ -11,18 +11,23 @@ view: purchase_history {
     }
   }
 
-dimension: user_id {}
-dimension: order_id {}
-dimension: created_at {}
-dimension: sale_price {}
-dimension: purchase_order {}
+  dimension: user_id {}
+  dimension: order_id {}
+  dimension: created_at {}
+  dimension: sale_price {}
+  dimension: purchase_order {}
 
-measure: order_total {
-  type: sum
-  sql: ${sale_price} ;;
-}
-measure: running_order_total {
-  type: running_total
-  sql: ${order_total} ;;
-}
+  measure: order_total {
+    type: sum
+    sql: ${sale_price} ;;
+  }
+  measure: running_order_total {
+    type: running_total
+    sql: ${order_total} ;;
+  }
+
+  measure: first_purchase_order {
+    type: min
+    sql: ${purchase_order} ;;
+  }
 }
