@@ -17,6 +17,10 @@ dimension: created_at {}
 dimension: sale_price {}
 dimension: purchase_order {}
 
+measure: order_total {
+  type: sum
+  sql: ${sale_price} ;;
+}
 measure: running_order_total {
   type: running_total
   sql: ${sale_price} ;;
