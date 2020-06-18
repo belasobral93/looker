@@ -1,6 +1,7 @@
 view: user_order_facts {
   derived_table: {
-    sql: SELECT
+    sql:
+      SELECT
         user_id
         , COUNT(DISTINCT order_id) AS lifetime_orders
         , SUM(sale_price) AS lifetime_revenue
@@ -9,33 +10,25 @@ view: user_order_facts {
         , COUNT(DISTINCT DATE_TRUNC('month', NULLIF(created_at,0))) AS number_of_distinct_months_with_orders
       FROM order_items
       GROUP BY user_id
-      ;;
+       ;;
+
   }
 }
+
+# include: "order_items.explore.lkml"
 #
-#   # Define your dimensions and measures here, like this:
-#   dimension: user_id {
-#     description: "Unique ID for each user that has ordered"
-#     type: number
-#     sql: ${TABLE}.user_id ;;
+# view: user_order_facts {
+#   derived_table: {
+#     explore_source: order_items {
+#       column: user_id {field: order_items.user_id}
+#       column: sale_price {field: order_items.sale_price}
+#       column: created_at {field: order_items.created_at}
+#     }
+#
 #   }
-#
+#   dimension: user_id {}
 #   dimension: lifetime_orders {
-#     description: "The total number of orders for each user"
 #     type: number
-#     sql: ${TABLE}.lifetime_orders ;;
 #   }
-#
-#   dimension_group: most_recent_purchase {
-#     description: "The date when each user last ordered"
-#     type: time
-#     timeframes: [date, week, month, year]
-#     sql: ${TABLE}.most_recent_purchase_at ;;
-#   }
-#
-#   measure: total_lifetime_orders {
-#     description: "Use this for counting lifetime orders across many users"
-#     type: sum
-#     sql: ${lifetime_orders} ;;
-#   }
+#   dimension: lifetime_customer_value {type: number}
 # }
