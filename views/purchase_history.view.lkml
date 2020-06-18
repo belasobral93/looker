@@ -23,6 +23,6 @@ measure: order_total {
 }
 measure: running_order_total {
   type: running_total
-  sql: ${sale_price} ;;
+  sql: ${order_total} ;;
 }
 }
