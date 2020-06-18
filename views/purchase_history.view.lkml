@@ -26,9 +26,8 @@ view: purchase_history {
     sql: ${order_total} ;;
   }
 
-#   measure: first_purchase_order {
-#     type: min
-#     sql: ${purchase_order} ;;
-#     filters: [ running_order_total: ">=300"]
-#   }
+  measure: first_purchase_order {
+    type: min
+    sql: ${purchase_order} ;;
+  }
 }
