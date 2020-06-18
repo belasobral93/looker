@@ -16,4 +16,9 @@ dimension: order_id {}
 dimension: created_at {}
 dimension: sale_price {}
 dimension: purchase_order {}
+
+measure: running_order_total {
+  type: running_total
+  sql: ${sale_price} ;;
+}
 }
