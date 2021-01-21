@@ -1,7 +1,7 @@
 project_name: "bela_training"
 
 visualization: {
-  id: "TESTe"
-  label: "TEST"
-  file: "usmap.js"
-}
+  id: "bela_gauge"
+  label: "bela_gauge"
+  url: "https://looker-custom-viz-a.lookercdn.com/master/liquid_fill_gauge.js"
+ }
