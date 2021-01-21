@@ -13,22 +13,26 @@ view: user_order_facts {
        ;;
 
   }
-}
 
-# include: "order_items.explore.lkml"
-#
-# view: user_order_facts {
-#   derived_table: {
-#     explore_source: order_items {
-#       column: user_id {field: order_items.user_id}
-#       column: sale_price {field: order_items.sale_price}
-#       column: created_at {field: order_items.created_at}
-#     }
-#
-#   }
-#   dimension: user_id {}
-#   dimension: lifetime_orders {
-#     type: number
-#   }
-#   dimension: lifetime_customer_value {type: number}
-# }
+  dimension: user_id {
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.user_id ;;
+  }
+
+  dimension: first_order {
+    type: date
+    sql: ${TABLE}.first_order ;;
+  }
+
+  dimension: latest_order {
+    type: date
+    sql: ${TABLE}.latest_order ;;
+  }
+
+  dimension: days_as_customer {
+    type: number
+    sql: DATEDIFF('day', ${first_order}, ${latest_order})+1 ;;
+  }
+
+}
